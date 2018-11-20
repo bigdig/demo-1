@@ -15,6 +15,7 @@
  * date : 2018/10/30 修复销毁时至空对象
  * date : 2018/11/02 优化loading
  * date : 2018/11/02 优化loading布局
+ * date : 2018/11/20 优化出错URL
  */
 
 #import <UIKit/UIKit.h>

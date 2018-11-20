@@ -604,8 +604,11 @@
 }
 
 - (void)close:(UIBarButtonItem*)item {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if (self.presentingViewController) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark KVO

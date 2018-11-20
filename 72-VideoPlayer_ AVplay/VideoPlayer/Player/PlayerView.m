@@ -608,13 +608,22 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
 - (IBAction)rePlay:(UIButton *)sender {
     if (self.allowSafariPlay && sender.tag) {
         [self exitFullscreen];
+        
+        UIViewController *vc = self.viewController?self.viewController:self.topViewController;
+        UINavigationController *nav = vc.navigationController;
+        
         WHWebViewController *web = [[WHWebViewController alloc] init];
         web.urlString = self.model.url;
         web.canDownRefresh = YES;
         web.navigationItem.title = self.model.title;
         
-        UINavigationController *webVC = [[UINavigationController alloc] initWithRootViewController:web];
-        [self.viewController?self.viewController:self.topViewController presentViewController:webVC animated:YES completion:nil];
+        
+        if (nav) {
+            [nav pushViewController:web animated:YES];
+            return;
+        }
+        [vc presentViewController:[[UINavigationController alloc] initWithRootViewController:web] animated:YES completion:nil];
+        
         return;
     }
     [self playWithModel:self.model];
@@ -1290,6 +1299,8 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
 
     [self.timer invalidate];
     self.timer = nil;
+    
+    [self rePlay:self.safariButton];
 }
 
 #pragma mark  - 播放器Seek完成后

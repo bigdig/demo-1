@@ -519,18 +519,22 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
     
     if (self.allowSafariPlay && sender.tag) {
         [self exitFullscreen];
+        
+        UIViewController *vc = self.viewController?self.viewController:self.topViewController;
+        UINavigationController *nav = vc.navigationController;
+        
         WHWebViewController *web = [[WHWebViewController alloc] init];
-        //web.iPhoneXX = self.iPhoneXX;
         web.urlString = self.model.url;
         web.canDownRefresh = YES;
         web.navigationItem.title = self.model.title;
         
-        UINavigationController *webVC = [[UINavigationController alloc] initWithRootViewController:web];
-        //webVC.navigationBar.barTintColor = [UIColor colorWithRed:10/255 green:149/255 blue:31/255 alpha:1.0];
-        //webVC.navigationBar.tintColor = [UIColor whiteColor];
-        //[webVC.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-        [self.viewController?self.viewController:self.topViewController presentViewController:webVC animated:YES completion:nil];
-        //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.model.live_stream]];
+        
+        if (nav) {
+            [nav pushViewController:web animated:YES];
+            return;
+        }
+        [vc presentViewController:[[UINavigationController alloc] initWithRootViewController:web] animated:YES completion:nil];
+        
         return;
     }
     [self playWithModel:self.model];
@@ -1327,6 +1331,8 @@ static NSString *status[] = {
     
     [self.timer invalidate];
     self.timer = nil;
+    
+    [self rePlay:self.safariButton];
 }
 
 #pragma mark  - 播放器Seek完成后
