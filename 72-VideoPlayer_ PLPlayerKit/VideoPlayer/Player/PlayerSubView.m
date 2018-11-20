@@ -494,16 +494,16 @@
     
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
-}
-- (BOOL)prefersStatusBarHidden{
-    return NO;
-}
-
-- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
-    return UIStatusBarAnimationNone;
-}
+//- (UIStatusBarStyle)preferredStatusBarStyle{
+//    return UIStatusBarStyleDefault;
+//}
+//- (BOOL)prefersStatusBarHidden{
+//    return NO;
+//}
+//
+//- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+//    return UIStatusBarAnimationNone;
+//}
 
 #pragma mark private Methods
 - (void)setupUI{
