@@ -22,7 +22,7 @@
 
 /* Begin PBXFileReference section */
 		52D7EF7F560980725C3A9614 /* libPods-VideoPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6936019E20A6B556005083BE /* VideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6936019E20A6B556005083BE /* PLPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PLPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		693601A120A6B556005083BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		693601A220A6B556005083BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		693601A420A6B556005083BE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 		6936019F20A6B556005083BE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6936019E20A6B556005083BE /* VideoPlayer.app */,
+				6936019E20A6B556005083BE /* PLPlayer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,9 +122,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6936019D20A6B556005083BE /* VideoPlayer */ = {
+		6936019D20A6B556005083BE /* PLPlayer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 693601B420A6B556005083BE /* Build configuration list for PBXNativeTarget "VideoPlayer" */;
+			buildConfigurationList = 693601B420A6B556005083BE /* Build configuration list for PBXNativeTarget "PLPlayer" */;
 			buildPhases = (
 				18E5CA678C20F1C117D68747 /* [CP] Check Pods Manifest.lock */,
 				6936019A20A6B556005083BE /* Sources */,
@@ -137,9 +137,9 @@
 			);
 			dependencies = (
 			);
-			name = VideoPlayer;
+			name = PLPlayer;
 			productName = VideoPlayer;
-			productReference = 6936019E20A6B556005083BE /* VideoPlayer.app */;
+			productReference = 6936019E20A6B556005083BE /* PLPlayer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -162,7 +162,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6936019920A6B556005083BE /* Build configuration list for PBXProject "VideoPlayer" */;
+			buildConfigurationList = 6936019920A6B556005083BE /* Build configuration list for PBXProject "PLPlayer" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -175,7 +175,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6936019D20A6B556005083BE /* VideoPlayer */,
+				6936019D20A6B556005083BE /* PLPlayer */,
 			);
 		};
 /* End PBXProject section */
@@ -432,7 +432,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6936019920A6B556005083BE /* Build configuration list for PBXProject "VideoPlayer" */ = {
+		6936019920A6B556005083BE /* Build configuration list for PBXProject "PLPlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				693601B220A6B556005083BE /* Debug */,
@@ -441,7 +441,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		693601B420A6B556005083BE /* Build configuration list for PBXNativeTarget "VideoPlayer" */ = {
+		693601B420A6B556005083BE /* Build configuration list for PBXNativeTarget "PLPlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				693601B520A6B556005083BE /* Debug */,

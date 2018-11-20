@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:VideoPlayer.xcodeproj">
+      location = "group:/Users/jay/Desktop/demo/72-VideoPlayer_ PLPlayerKit/PLPlayer.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
