@@ -127,6 +127,8 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
 
 @property (strong, nonatomic)  WKWebView *danmuView;
 
+/** 是否已经加载成功*/
+@property (nonatomic, assign) BOOL canLoad;
 @end
 
 
@@ -441,6 +443,9 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
 #pragma mark  开始播放
 - (void)playWithModel:(id<TTZPlayerModel>)model{
     
+    if(![self.model.url isEqualToString:model.url]) _canLoad = NO;
+    
+    _model = model;
     //设置屏幕常亮
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     
@@ -448,7 +453,9 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
     self.loadingLabel.text = @"loading...";
     self.loadingLabel.hidden = self.loadingView.isHidden;
     self.errorBtn.hidden = !self.loadingView.isHidden;
-    
+    self.videoButtomView.hidden = YES;
+    self.titleLabel.text = model.title;
+
     
     NSURL *url = [NSURL URLWithString:@"rtmp://live.hkstv.hk.lxdns.com/live/hks"];
     if ([model.url hasPrefix:@"http://"] || [model.url hasPrefix:@"https://"]) {
@@ -464,15 +471,12 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
     }
     
     [self stop];
-    self.model = model;
     //prepareToPlay:此方法传入的参数是NSURL类型.
     [self.mediaPlayer prepareToPlay:url];
     //开始播放
     [self play];
     
-    self.titleLabel.text = model.title;
-    
-    self.videoButtomView.hidden = YES;
+
     
     NSLog(@"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     NSLog(@"%s----URL-----%@", __func__,url.absoluteString);
@@ -521,7 +525,8 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
         
         
         if (nav) {
-            [nav pushViewController:web animated:YES];
+            web.loadingProgressColor = [UIColor whiteColor];
+            [nav pushViewController:web animated:NO];
             return;
         }
         [vc presentViewController:[[UINavigationController alloc] initWithRootViewController:web] animated:YES completion:nil];
@@ -1150,9 +1155,10 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
 #pragma mark  - 获取到视频的相关信息
 - (void)OnVideoPrepared:(NSNotification *)noti{
     NSLog(@"%s--获取到视频的相关信息--时长：%f秒", __func__,_mediaPlayer.duration/1000);
-    //!(_playerLoading)? : _playerLoading();
     
     NSTimeInterval total = _mediaPlayer.duration/1000;
+    NSTimeInterval current = _mediaPlayer.currentPosition/1000;
+
     BOOL islive = !(total > 0);
     self.videoButtomView.hidden = islive;
 //    if(islive){
@@ -1162,7 +1168,9 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
     self.fullBufView.alpha = (CGFloat) !islive;
     self.fullProgressView.alpha  = self.fullBufView.alpha;
 
-    self.timeLabel.text = [NSString stringWithFormat:@"00:00/%02d:%02d",(NSInteger)total/60,(NSInteger)total%60];
+    self.timeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld/%02ld:%02ld",(NSInteger)current/60,(NSInteger)current%60,(NSInteger)total/60,(NSInteger)total%60];
+    
+    self.canLoad = YES;
 }
 
 #pragma mark  - 视频正常播放完成
@@ -1190,7 +1198,7 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
     [self.timer invalidate];
     self.timer = nil;
     
-    [self rePlay:self.safariButton];
+    if(!self.canLoad) [self rePlay:self.safariButton];
 }
 
 #pragma mark  - 播放器Seek完成后

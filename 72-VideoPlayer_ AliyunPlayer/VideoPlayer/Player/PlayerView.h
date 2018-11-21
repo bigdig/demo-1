@@ -16,6 +16,7 @@
  * date : 2018/11/02 优化loading
  * date : 2018/11/02 优化loading布局
  * date : 2018/11/20 优化出错URL
+ * date : 2018/11/21 优化出错URL2
  */
 
 #import <UIKit/UIKit.h>

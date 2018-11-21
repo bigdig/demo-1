@@ -389,7 +389,9 @@
         
         _wkWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:configuration];
         _wkWebView.allowsBackForwardNavigationGestures = YES;/**这一步是，开启侧滑返回上一历史界面**/
-        
+        _wkWebView.backgroundColor = [UIColor clearColor];
+        _wkWebView.scrollView.backgroundColor = [UIColor clearColor];
+        _wkWebView.opaque = NO;
         // 设置代理
         _wkWebView.navigationDelegate = self;
         
@@ -512,7 +514,7 @@
 //    } else {
 //        self.automaticallyAdjustsScrollViewInsets = NO;
 //    }
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blackColor];
     [self showLeftBarButtonItem];
     
     [self.view addSubview:self.wkWebView];
