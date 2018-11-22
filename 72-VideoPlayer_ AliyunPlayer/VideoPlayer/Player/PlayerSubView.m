@@ -435,10 +435,10 @@
         _reloadBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
         //_reloadBtn.frame = CGRectMake(0, 0, 175, 150);//140
         //_reloadBtn.frame = CGRectMake(0, 0, 118.8, 101.7);//140
-        
+        _reloadBtn.tintColor = [UIColor whiteColor];
         //_reloadBtn.center = self.view.center;
-        [_reloadBtn setImage:[UIImage imageFromBundleWithName:@"fullplayer_web_error"] forState:UIControlStateNormal];
-        [_reloadBtn setImage:[UIImage imageFromBundleWithName:@"fullplayer_web_error"] forState:UIControlStateHighlighted];
+        [_reloadBtn setImage:[[UIImage imageFromBundleWithName:@"fullplayer_web_error"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [_reloadBtn setImage:[[UIImage imageFromBundleWithName:@"fullplayer_web_error"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateHighlighted];
         
         //[_reloadBtn setTitle:@"网络异常,点击重新加载" forState:UIControlStateNormal];
         [_reloadBtn addTarget:self action:@selector(wkWebViewReload) forControlEvents:(UIControlEventTouchUpInside)];
