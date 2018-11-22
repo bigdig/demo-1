@@ -691,6 +691,7 @@
     [_wkWebView stopLoading];
     _wkWebView.UIDelegate = nil;
     _wkWebView.navigationDelegate = nil;
+    [_progress removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

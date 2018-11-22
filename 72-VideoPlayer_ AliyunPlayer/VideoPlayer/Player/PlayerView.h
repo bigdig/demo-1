@@ -17,6 +17,7 @@
  * date : 2018/11/02 优化loading布局
  * date : 2018/11/20 优化出错URL
  * date : 2018/11/21 优化出错URL2
+ * date : 2018/11/22 优化不能加载的URL直接跳Web
  */
 
 #import <UIKit/UIKit.h>

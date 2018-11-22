@@ -94,10 +94,6 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
 /** 是否正在拖 */
 @property (nonatomic, assign) BOOL progressDragging;
 
-//@property (assign, nonatomic) CGPoint startPoint;
-//@property (assign, nonatomic) CGFloat volumeValue;
-//@property (assign, nonatomic) Direction direction;
-
 /** 平移方向 */
 @property (nonatomic, assign) PanDirection           panDirection;
 /** 用来保存快进的总时长 */
@@ -1198,7 +1194,7 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
     [self.timer invalidate];
     self.timer = nil;
     
-    if(!self.canLoad) [self rePlay:self.safariButton];
+    if(!self.canLoad && self.allowSafariPlay) [self rePlay:self.safariButton];
 }
 
 #pragma mark  - 播放器Seek完成后
