@@ -143,6 +143,8 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
 
 @property (strong, nonatomic)  WKWebView *danmuView;
 
+
+@property (nonatomic, assign) BOOL canLoad;
 @end
 
 
@@ -452,7 +454,10 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
 }
 #pragma mark  开始播放
 - (void)playWithModel:(id<TTZPlayerModel>)model{
-    self.model = model;
+    
+    if(![_model.url isEqualToString:model.url]) _canLoad = NO;
+    
+    _model = model;
     //设置屏幕常亮
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     
@@ -530,7 +535,8 @@ typedef NS_ENUM(NSUInteger, PlayViewState) {
         
         
         if (nav) {
-            [nav pushViewController:web animated:YES];
+            web.loadingProgressColor = [UIColor whiteColor];
+            [nav pushViewController:web animated:NO];
             return;
         }
         [vc presentViewController:[[UINavigationController alloc] initWithRootViewController:web] animated:YES completion:nil];
@@ -1304,6 +1310,7 @@ static NSString *status[] = {
     
     self.timeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld/%02ld:%02ld",(NSInteger)current/60,(NSInteger)current%60,(NSInteger)total/60,(NSInteger)total%60];
     self.reconnectCount = 0;
+    self.canLoad = YES;
 }
 
 #pragma mark  - 视频正常播放完成
@@ -1332,7 +1339,7 @@ static NSString *status[] = {
     [self.timer invalidate];
     self.timer = nil;
     
-    [self rePlay:self.safariButton];
+    if(!self.canLoad && self.allowSafariPlay) [self rePlay:self.safariButton];
 }
 
 #pragma mark  - 播放器Seek完成后
