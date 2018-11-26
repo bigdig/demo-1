@@ -29,65 +29,38 @@
     
     [self.view addSubview:redView];
     self.redView = redView;
-     __weak typeof(self) weakSelf = self;
-    [redView setLyHeight:^(LayoutModel * _Nonnull layout) {
-        //(layout).constant = 200;
-        layout.relativeToView = weakSelf.view;
-        layout.multiplier = 0.6;
-    }];
-
-    [redView setLyWidth:^(LayoutModel  *layout) {
-        (layout).constant = 200;
-    }];
-
-    [redView setLyCenterX:^(LayoutModel  *layout) {
-
-    }];
-    [redView setLyCenterY:^(LayoutModel  *layout) {
-
-    }];
-    [UIView animateWithDuration:33 animations:^{
+    __weak typeof(self) weakSelf = self;
+    
+    [redView setLayout:^(LayoutModel * _Nonnull layout) {
+//        layout.lyHeight().relativeToViewBlock(weakSelf.view)
+//                         .multiplierBlock(0.6);
+//        layout.lyWidth().constantBlock(200);
+//        layout.lyCenterX();
+//        layout.lyCenterY();
         
+        layout.lyleft().constantBlock(10);
+        layout.lyTop().constantBlock(10);
+        layout.lyRight().constantBlock(-10);
+        layout.lyButtom().constantBlock(-10);
     }];
+
+
     UISwitch *sw = [UISwitch new];
     [redView addSubview:sw];
-    [sw setLyCenterX:nil];
-
+    [sw setLayout:^(LayoutModel * _Nonnull layout) {
+        layout.lyCenterY();
+        layout.lyCenterX();
+    }];
     
-    
-    [sw setLyCenterY:nil];
-    
-//    [redView setLyRight:^(LayoutModel *__autoreleasing *layout) {
-////        (*layout).relativeToView = self.view;
-//        (*layout).constant = -10;
-//    }];
-//
-//    [redView setLyTop:^(LayoutModel *__autoreleasing *layout) {
-////        (*layout).relativeToView = self.view;
-//        (*layout).constant = 10;
-//    }];
-//    [redView setLyButtom:^(LayoutModel *__autoreleasing *layout) {
-////        (*layout).relativeToView = self.view;
-////        (*layout).constant = -10;
-//    }];
-//
-//    [redView setLyleft:^(LayoutModel *__autoreleasing *layout) {
-////        (*layout).relativeToView = self.view;
-////        (*layout).constant = 10;
-//    }];
     
     UIButton *add = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [redView addSubview:add];
-    
-    [add setLyTop:^(LayoutModel * _Nonnull layout) {
-        layout.constant = 10;
+    [add setLayout:^(LayoutModel * _Nonnull layout) {
+        layout.lyTop().constantBlock(10);
+        
+        layout.lyleft().constantBlock(30);
     }];
-    
 
-    
-    [add setLyleft:^(LayoutModel * _Nonnull layout) {
-        layout.constant = 5;
-    }];
 
 }
 
