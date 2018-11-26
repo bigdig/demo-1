@@ -26,12 +26,6 @@
 		696863FB21A26496004426BB /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 696863F821A26496004426BB /* icon.png */; };
 		696863FC21A26496004426BB /* Adview_Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 696863F921A26496004426BB /* Adview_Logo.jpg */; };
 		696863FD21A26496004426BB /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 696863FA21A26496004426BB /* logo.jpg */; };
-		6968641421A27E8D004426BB /* AdViewToolX.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6968640821A27E8D004426BB /* AdViewToolX.mm */; };
-		6968641521A27E8D004426BB /* AdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968640921A27E8D004426BB /* AdViewController.m */; };
-		6968641621A27E8D004426BB /* AdRunStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968640D21A27E8D004426BB /* AdRunStateManager.m */; };
-		6968641721A27E8D004426BB /* AdSingleTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968640E21A27E8D004426BB /* AdSingleTestViewController.m */; };
-		6968641821A27E8D004426BB /* AdSingleTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6968640F21A27E8D004426BB /* AdSingleTestViewController.xib */; };
-		6968641921A27E8D004426BB /* SimMethod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6968641221A27E8D004426BB /* SimMethod.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,16 +93,6 @@
 		696863F821A26496004426BB /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		696863F921A26496004426BB /* Adview_Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Adview_Logo.jpg; sourceTree = "<group>"; };
 		696863FA21A26496004426BB /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
-		6968640821A27E8D004426BB /* AdViewToolX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AdViewToolX.mm; sourceTree = "<group>"; };
-		6968640921A27E8D004426BB /* AdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdViewController.m; sourceTree = "<group>"; };
-		6968640B21A27E8D004426BB /* AdRunStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdRunStateManager.h; sourceTree = "<group>"; };
-		6968640C21A27E8D004426BB /* AdSingleTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdSingleTestViewController.h; sourceTree = "<group>"; };
-		6968640D21A27E8D004426BB /* AdRunStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdRunStateManager.m; sourceTree = "<group>"; };
-		6968640E21A27E8D004426BB /* AdSingleTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdSingleTestViewController.m; sourceTree = "<group>"; };
-		6968640F21A27E8D004426BB /* AdSingleTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdSingleTestViewController.xib; sourceTree = "<group>"; };
-		6968641021A27E8D004426BB /* AdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdViewController.h; sourceTree = "<group>"; };
-		6968641221A27E8D004426BB /* SimMethod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimMethod.cpp; sourceTree = "<group>"; };
-		6968641321A27E8D004426BB /* AdViewToolX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdViewToolX.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,7 +154,6 @@
 		69685B0021A26084004426BB /* AdViewSDK-3.5.2 */ = {
 			isa = PBXGroup;
 			children = (
-				6968640721A27E8D004426BB /* AdViewToolLevel */,
 				69685E0D21A26085004426BB /* AdView */,
 			);
 			path = "AdViewSDK-3.5.2";
@@ -257,39 +240,6 @@
 			path = res;
 			sourceTree = "<group>";
 		};
-		6968640721A27E8D004426BB /* AdViewToolLevel */ = {
-			isa = PBXGroup;
-			children = (
-				6968640821A27E8D004426BB /* AdViewToolX.mm */,
-				6968640921A27E8D004426BB /* AdViewController.m */,
-				6968640A21A27E8D004426BB /* testsuit */,
-				6968641021A27E8D004426BB /* AdViewController.h */,
-				6968641121A27E8D004426BB /* unity3d */,
-				6968641321A27E8D004426BB /* AdViewToolX.h */,
-			);
-			path = AdViewToolLevel;
-			sourceTree = "<group>";
-		};
-		6968640A21A27E8D004426BB /* testsuit */ = {
-			isa = PBXGroup;
-			children = (
-				6968640B21A27E8D004426BB /* AdRunStateManager.h */,
-				6968640C21A27E8D004426BB /* AdSingleTestViewController.h */,
-				6968640D21A27E8D004426BB /* AdRunStateManager.m */,
-				6968640E21A27E8D004426BB /* AdSingleTestViewController.m */,
-				6968640F21A27E8D004426BB /* AdSingleTestViewController.xib */,
-			);
-			path = testsuit;
-			sourceTree = "<group>";
-		};
-		6968641121A27E8D004426BB /* unity3d */ = {
-			isa = PBXGroup;
-			children = (
-				6968641221A27E8D004426BB /* SimMethod.cpp */,
-			);
-			path = unity3d;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -352,7 +302,6 @@
 				696863FC21A26496004426BB /* Adview_Logo.jpg in Resources */,
 				69685AEE21A251BD004426BB /* Assets.xcassets in Resources */,
 				696863FD21A26496004426BB /* logo.jpg in Resources */,
-				6968641821A27E8D004426BB /* AdSingleTestViewController.xib in Resources */,
 				69685AEC21A251BC004426BB /* Main.storyboard in Resources */,
 				696863E521A26089004426BB /* AdViewRes.bundle in Resources */,
 			);
@@ -366,13 +315,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				69685AFC21A2521C004426BB /* UIView+Layout.m in Sources */,
-				6968641621A27E8D004426BB /* AdRunStateManager.m in Sources */,
-				6968641421A27E8D004426BB /* AdViewToolX.mm in Sources */,
 				69685AE921A251BC004426BB /* ViewController.m in Sources */,
-				6968641521A27E8D004426BB /* AdViewController.m in Sources */,
-				6968641721A27E8D004426BB /* AdSingleTestViewController.m in Sources */,
 				69685AF421A251BD004426BB /* main.m in Sources */,
-				6968641921A27E8D004426BB /* SimMethod.cpp in Sources */,
 				69685AE621A251BC004426BB /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

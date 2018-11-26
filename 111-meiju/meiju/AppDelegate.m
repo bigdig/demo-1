@@ -11,11 +11,11 @@
 #import "AdSpreadScreenManager.h"
 #import "AdSpreadScreenManagerDelegate.h"
 
-#define ADBANNERKEY       @"SDK20111022530129m85is43b70r4iyc"
-#define ADINSTLKEY        @"SDK20141430020730kbmya6prn5qg1t0"
-#define ADSPREADSCREENKEY @"SDK20151311010501u7hth0gexjm9gym"
-#define ADNATIVEKEY       @"SDK2016132101011577xqkkmnj4heg5p"
-#define ADVIDEOKEY        @"SDK20161305010929wultvgfj820vb7p"
+//#define ADBANNERKEY       @"SDK20111022530129m85is43b70r4iyc"
+//#define ADINSTLKEY        @"SDK20141430020730kbmya6prn5qg1t0"
+#define ADSPREADSCREENKEY   @"SDK20151311010501u7hth0gexjm9gym"
+//#define ADNATIVEKEY       @"SDK2016132101011577xqkkmnj4heg5p"
+//#define ADVIDEOKEY        @"SDK20161305010929wultvgfj820vb7p"
 
 @interface AppDelegate ()<AdSpreadScreenManagerDelegate>
 @property (strong, nonatomic) AdSpreadScreenManager *manager;
@@ -34,16 +34,14 @@
     UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nvc;
     
-    AdViewConfigStore *cfg = [AdViewConfigStore sharedStore];
-    
-
-    [cfg requestConfig:@[ADSPREADSCREENKEY] sdkType:AdViewSDKType_SpreadScreen];
 
     
     [self.window makeKeyAndVisible];
     
+    AdViewConfigStore *cfg = [AdViewConfigStore sharedStore];
+    [cfg requestConfig:@[ADSPREADSCREENKEY] sdkType:AdViewSDKType_SpreadScreen];
     self.manager = [AdSpreadScreenManager managerWithAdSpreadScreenKey:ADSPREADSCREENKEY WithDelegate:self];
-   BOOL isA = [self.manager requestAdSpreadScreenView:nvc];
+    [self.manager requestAdSpreadScreenView:nvc];
     return YES;
 }
 
@@ -106,23 +104,23 @@
 /**
  * 是否打开日志模式，缺省为NO
  */
-- (BOOL)adSpreadScreenLogMode {
-    return YES;
-}
+//- (BOOL)adSpreadScreenLogMode {
+//    return YES;
+//}
 
 /**
  * 是否获取地理位置，缺省为NO
  */
-- (BOOL)adSpreadScreenOpenGps {
-    return NO;
-}
+//- (BOOL)adSpreadScreenOpenGps {
+//    return NO;
+//}
 /**
  * 是否使用html5广告，缺省为NO
  */
-- (BOOL)adSpreadScreenUsingHtml5
-{
-    return NO;
-}
+//- (BOOL)adSpreadScreenUsingHtml5
+//{
+//    return NO;
+//}
 
 - (UIWindow *)adSpreadScreenWindow {
     return self.window;
