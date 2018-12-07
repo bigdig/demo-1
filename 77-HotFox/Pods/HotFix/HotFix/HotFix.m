@@ -84,7 +84,6 @@ static HotFix *fixManager = nil;
     
     if ([instance respondsToSelector:NSSelectorFromString(selector)]) {
 
-        [self.cache addObject:<#(nonnull id)#>];
         id target = [instance performSelector:NSSelectorFromString(selector) withObject:obj1 withObject:obj2];
         if (target) {
             //        NSLog(@" 返回值:%@",target);
