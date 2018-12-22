@@ -279,15 +279,15 @@
     
     [self showLoadIng];
   
-    
-    [TTZMedia AVsaveVideoPath:@"/Users/jay/Downloads/MixVideo.mov"
-                     waterImg:[UIImage imageNamed:@"Snip20180503_38"]
-                   imagePonit:CGRectMake(0, 0, 100, 100)
-                      qustion:@"月半弯.mp3"
-                 qustionPonit:CGRectMake(200, 300, 50, 50)];
-    return;
-    [TTZMedia importMP3WithURL:@"/Users/jay/Downloads/20180503102411_460.mp4"
-                         range:NSMakeRange(0, 0)
+//
+//    [TTZMedia AVsaveVideoPath:@"/Users/xin/Documents/cxkenny.github.io/api/demo.mp4"
+//                     waterImg:[UIImage imageNamed:@"Snip20180503_38"]
+//                   imagePonit:CGRectMake(0, 0, 100, 100)
+//                      qustion:@"月半弯.mp3"
+//                 qustionPonit:CGRectMake(200, 300, 50, 50)];
+//    return;
+    [TTZMedia importMP3WithURL:@"/Users/xin/Documents/cxkenny.github.io/api/demo.mp4"
+                         range:NSMakeRange(0, 10)
                     completion:^(NSString *path) {
                         NSLog(@"%s-合成-%@", __func__,path);
                     }];

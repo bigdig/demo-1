@@ -240,7 +240,7 @@ static AVURLAsset* videoAsset = nil;
     AVAssetExportSession *assetExportSession = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetPassthrough];
     
     
-    NSString *outPutPath = @"/Users/jay/Desktop/MixVideo.mov";//[NSHomeDirectory() stringByAppendingPathComponent:MediaFileName];
+    NSString *outPutPath = @"/Users/xin/Desktop/MixVideo.mov";//[NSHomeDirectory() stringByAppendingPathComponent:MediaFileName];
     //混合后的视频输出路径
     NSURL *outPutUrl = [NSURL fileURLWithPath:outPutPath];
     
@@ -554,7 +554,7 @@ static AVURLAsset* videoAsset = nil;
     
     // 4 - 输出路径
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = @"/Users/jay/Desktop";//[paths objectAtIndex:0];
+    NSString *documentsDirectory = @"/Users/xin/Desktop";//[paths objectAtIndex:0];
     NSString *myPathDocs =  [documentsDirectory stringByAppendingPathComponent:
                              [NSString stringWithFormat:@"FinalVideo-%d.mov",arc4random() % 1000]];
     
