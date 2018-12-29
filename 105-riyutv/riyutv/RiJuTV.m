@@ -15,7 +15,7 @@
 + (void)tvlist{
 //    view-source:http://m.91kds.cn/
     
-    NSURL * url = [NSURL URLWithString:@"http://m.91kds.cn/"];
+    NSURL * url = [NSURL URLWithString:@"http://m.91kds.org/"];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setTimeoutInterval:10.0];
@@ -36,7 +36,7 @@
         
         [rs enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray * array = [self matchString:obj toRegexString:rString];
-            NSString *url =  [NSString stringWithFormat:@"http://m.91kds.cn/%@",array[1]];
+            NSString *url =  [NSString stringWithFormat:@"http://m.91kds.org/%@",array[1]];
             NSString *name = array[2];
             
             
@@ -49,7 +49,7 @@
 
             [ls enumerateObjectsUsingBlock:^(NSString * lobj, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSArray * array = [self matchString:lobj toRegexString:lString];
-                NSString *url =  [NSString stringWithFormat:@"http://m.91kds.cn/%@",array[1]];
+                NSString *url =  [NSString stringWithFormat:@"http://m.91kds.org/%@",array[1]];
                 NSString *name = array[2];
                 NSLog(@"%s", __func__);
                 [data addObject:@{@"url":url,@"name":name}];
@@ -58,6 +58,8 @@
             [list addObject:@{@"url":url,@"name":name,@"list":data}];
         }];
 
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:list options:NSJSONWritingPrettyPrinted error:&error];    NSString*jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+            
         NSLog(@"%s", __func__);
     }];
     //开启网络任务

@@ -12,18 +12,33 @@
 
 #import <WebKit/WebKit.h>
 
-@interface ViewController ()<WKNavigationDelegate,UIScrollViewDelegate>
+@interface ViewController ()<WKNavigationDelegate,UIScrollViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (strong, nonatomic)  WKWebView *webView;
 
 @end
 
 @implementation ViewController
+#pragma mark-> imagePickerController delegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    /**这种方法是ios8之后提供的方法，ios8之前是不能用的,我尝试用之前的第三方去替代结果表示并不是很理想，很显然系统提供的api无论是从识别效率还是识别准确度上都要比第三方的强，我尝试用一个自定义背景色的二维码去被识别但是第三方提取不到信息，系统的可以提取到。这里说的取不到是在系统从相册中提取原图的时候上面的二维码信息提取不到，但是我这里把相册的编辑属性打开，取编辑之后的图片之后奇迹般的获取到了信息，真是奇葩 */
+    //1.获取选择的图片
+    UIImage *pickImage =[info objectForKey:@"UIImagePickerControllerEditedImage"];
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+//        [self decodeImage:pickImage];
+    }];
+    
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 //    [self test];
-    
+//    [RiJuTV tvlist];
+    return;
     NSString *json = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"https://jaysongd.github.io/api/tv.json"] encoding:NSUTF8StringEncoding error:NULL];
     NSArray *list = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONWritingPrettyPrinted error:NULL];
 
@@ -42,9 +57,28 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    SPWebViewController *vc = [SPWebViewController new];
-    vc.url = @"http://m.91kds.cn/jiemu_qiyijdgp.html";
-    [self presentViewController:vc animated:YES completion:nil];
+
+    //1.初始化相册拾取器
+    UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+    //2.设置代理
+    controller.navigationBar.barTintColor = [UIColor orangeColor];
+    controller.navigationBar.tintColor = [UIColor redColor];
+    controller.delegate = self;
+    //3.设置资源：
+    /**
+     UIImagePickerControllerSourceTypePhotoLibrary,相册
+     UIImagePickerControllerSourceTypeCamera,相机
+     UIImagePickerControllerSourceTypeSavedPhotosAlbum,照片库
+     */
+    controller.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    //4.随便给他一个转场动画
+    //controller.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+    controller.allowsEditing=YES;
+    [self presentViewController:controller animated:YES completion:NULL];
+
+//    SPWebViewController *vc = [SPWebViewController new];
+//    vc.url = @"http://m.91kds.cn/jiemu_qiyijdgp.html";
+//    [self presentViewController:vc animated:YES completion:nil];
 }
 /// FIXME: UIScrollViewDelegate
 -(UIView*)viewForZoomingInScrollView:(UIScrollView*)scrollView
