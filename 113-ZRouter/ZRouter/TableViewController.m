@@ -13,7 +13,10 @@
 #import "S.h"
 
 
+
 @interface TableViewController ()
+
+@property (nonatomic, copy)    RouterActionCallbackBlock actionCallbackBlock;
 
 @end
 
@@ -26,11 +29,19 @@
         [s setValuesForKeysWithDictionary:callbackModel.url.params];
         TableViewController *messageListVC = [TableViewController new];
         messageListVC.model = s;
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:messageListVC animated:YES completion:nil];
-        callbackModel.actionCallbackBlock(@{@"age":@(19)});
+        [callbackModel.url.viewController presentViewController:messageListVC animated:YES completion:nil];
+        messageListVC.actionCallbackBlock = callbackModel.actionCallbackBlock;
+        //callbackModel.actionCallbackBlock(@{@"age":@(19)});
     }];
     
     
+    
+    
+    
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    self.actionCallbackBlock(@{@"age":@(19)});
 }
 
 - (void)viewDidLoad {
@@ -41,6 +52,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.actionCallbackBlock(@{@"age":@(19)});
+    });
 }
 
 #pragma mark - Table view data source

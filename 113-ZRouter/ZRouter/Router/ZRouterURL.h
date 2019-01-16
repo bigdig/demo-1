@@ -6,7 +6,7 @@
 //  Copyright © 2018 ZZ. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 
 static NSString *const ZRouterScheme = @"YTRouter";
@@ -18,6 +18,8 @@ static NSString *const ZRouterScheme = @"YTRouter";
 @property (nonatomic, copy, readonly) NSString *path;
 @property (nonatomic, copy, readonly) NSString *query;
 @property (nonatomic, strong, readonly) NSDictionary *params;
+@property (nonatomic, weak)  UIViewController *viewController;
+
 
 //- (instancetype)initWithURLString:(NSString *)URLString;
 - (instancetype)initWithPath:(NSString *)path;
