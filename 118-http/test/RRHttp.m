@@ -10,7 +10,6 @@
 
 #import <CommonCrypto/CommonCrypto.h>
 
-
 static id instance = nil;
 
 @interface RRHttp ()

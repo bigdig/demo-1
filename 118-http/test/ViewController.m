@@ -18,7 +18,12 @@
 @implementation ViewController
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    //[self httpRequest];
+    
+    NSString *old = [self reverseWordsInString:@"5aSa5aSa5bKb"];
+    NSLog(@"%s", __func__);
+    return
+    
+//    [self httpRequest];return;
     //http://129.204.117.172/api/vod?tid=22&p=10&debug=99
     [[RRHttp shareHttp] getRequest:@"http://129.204.117.172/taiju/vod" parameters:@{@"p":@(0),@"tid":@(16)} success:^(id  _Nonnull respones) {
         NSLog(@"%@", respones);
@@ -27,32 +32,48 @@
     }];
 }
 
-//- (void)httpRequest{
-//    NSString *urlStr = @"http://129.204.117.172/api/series";
-//    urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-//
-//    // @"BundleId/AppVersion/(Model;SystemVersion;DeviceScale)";
-//    NSString *userAgent = [NSString stringWithFormat:@"%@/%@/ (%@; iOS %@; Scale %0.2f)",
-//                 [[NSBundle mainBundle] infoDictionary][@"CFBundleIdentifier"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleIdentifierKey],
-//                 [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleVersionKey],
-//                 [[UIDevice currentDevice] model],
-//                 [[UIDevice currentDevice] systemVersion],
-//                 [[UIScreen mainScreen] scale]];
-//
-//    [request setValue:[self getToken:userAgent] forHTTPHeaderField:@"User-Id"];
-//    [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
-//
-//    NSURLSession *session = [NSURLSession sharedSession];
-//
-//    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//
-//        NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:NULL];
-//        NSLog(@"%@",obj);
-//
-//        if (obj) {
-//
+- (NSString *)generateTradeNO{
+    NSString *sourceStr = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklnmopqrstuvwxyz";
+    unsigned index = rand() % [sourceStr length];
+    return [sourceStr substringWithRange:NSMakeRange(index, 1)];
+}
+
+- (NSString*)reverseWordsInString:(NSString*)oldStr{
+    NSMutableString *newStr = [[NSMutableString alloc] initWithCapacity:oldStr.length];
+    for (int i = (int)oldStr.length - 1; i >= 0; i --) {
+        unichar character = [oldStr characterAtIndex:i];
+        [newStr appendFormat:@"%c",character];
+    }
+    return newStr;
+}
+
+
+- (void)httpRequest{
+    NSString *urlStr = @"https://haokan.baidu.com/videoui/list/tab?subTab=qiongying&source=wise-channel&bt=2222&_=1551750564572&direction=down&refreshType=1";//@"http://129.204.117.172/api/series";
+    urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+
+    // @"BundleId/AppVersion/(Model;SystemVersion;DeviceScale)";
+    NSString *userAgent = [NSString stringWithFormat:@"%@/%@/ (%@; iOS %@; Scale %0.2f)",
+                 [[NSBundle mainBundle] infoDictionary][@"CFBundleIdentifier"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleIdentifierKey],
+                 [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleVersionKey],
+                 [[UIDevice currentDevice] model],
+                 [[UIDevice currentDevice] systemVersion],
+                 [[UIScreen mainScreen] scale]];
+
+    //[request setValue:[self getToken:userAgent] forHTTPHeaderField:@"User-Id"];
+    //[request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
+
+    NSURLSession *session = [NSURLSession sharedSession];
+
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
+        NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:NULL];
+        NSLog(@"%@",obj);
+
+        if (obj) {
+
 //            NSInteger code = [obj[@"code"] integerValue];
 //            if (!code) {
 //                NSLog(@"获取数据成功");
@@ -79,14 +100,14 @@
 //            }else{
 //                NSLog(@"其他业务错误");
 //            }
-//        }
-//
-//    }];
-//
-//    //开始任务
-//    [task resume];
-//}
-//
+        }
+
+    }];
+
+    //开始任务
+    [task resume];
+}
+
 //- (nullable NSString *)md5:(nullable NSString *)str {
 //    if (!str) return nil;
 //
