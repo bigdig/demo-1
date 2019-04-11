@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-#import <Api.h>
+#import "Api.h"
 
 @interface ViewController ()
 
@@ -19,14 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [Api registerAppKey:@"mcdfdgq4363731453637"];
+    [Api registerAppKey:@"mnbvcxz1234567890"];
 
 }
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [[Api shareApi] postRequest:@"http://127.0.0.1/app/public/api/send" parameters:@{@"debug5":@(99),@"email":@"970151336@qq.com",@"json8":@"55"} success:^(id respones) {
-        NSLog(@"%s", __func__);
+    [[Api shareApi] postRequest:@"http://127.0.0.1/app/public/api/t1" parameters:@{@"c":@"HK",@"l":@"zh-Hans-CN"} success:^(id respones) {
+        NSLog(@"%s---%@", __func__,respones);
     } failure:^(NSError *error) {
        NSLog(@"%s", __func__);
     }];

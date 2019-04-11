@@ -8,7 +8,7 @@
 
 #import "Api.h"
 #import <CommonCrypto/CommonCrypto.h>
-
+#import <sys/utsname.h>
 
 static id instance = nil;
 
@@ -88,15 +88,49 @@ static id instance = nil;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:longURLString]];
     [request setTimeoutInterval:10.0];
     
+    //1）获取设置的语言
     
-    NSString *userAgent = [NSString stringWithFormat:@"%@/%@/ (%@; iOS %@; Scale %0.2f)",
+    //NSString *nsLang  = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
+    
+    //传说中获取语言设置最准确的方法：
+    
+    NSString *nsLang = [[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"]  objectAtIndex:0];
+    
+    //2）获取设置的国家
+    /*
+     中国 CN
+     香港 HK
+     台湾 TW
+     澳门 MO
+     
+     简体中文 zh-Hans-CN
+     繁体中文 zh-Hant-CN
+     繁体中文(香港) zh-Hant-HK
+     繁体中文(澳门) zh-Hant-TW
+     繁体中文(台湾) zh-Hant-MO
+     
+     */
+    
+    NSString *nsCount  = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
+    NSLog(@"%s-线下的国家：%@,语言：%@", __func__,nsCount,nsLang);
+    
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *deviceModel = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    
+    NSString *deviceUUID = [UIDevice currentDevice].identifierForVendor.UUIDString;//获取设备唯一标识符 例如：FBF2306E-A0D8-4F4B-BDED-9333B627D3E6
+
+    
+    NSString *userAgent = [NSString stringWithFormat:@"%@/%@/%d (%@; iOS %@; Scale %0.2f; %@; %@; %@)",
                            [[NSBundle mainBundle] infoDictionary][@"CFBundleIdentifier"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleIdentifierKey],
-                           [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleVersionKey],
+                           [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] ?: [[NSBundle mainBundle] infoDictionary][(__bridge NSString *)kCFBundleVersionKey],online,
                            [[UIDevice currentDevice] model],
                            [[UIDevice currentDevice] systemVersion],
-                           [[UIScreen mainScreen] scale]];
+                           [[UIScreen mainScreen] scale],nsCount,nsLang,deviceModel];
     
     [request setValue:[self getToken:userAgent] forHTTPHeaderField:@"User-Id"];
+    [request setValue:deviceUUID forHTTPHeaderField:@"Device-Id"];
+
     [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
     
     NSURLSession *session = [NSURLSession sharedSession];
@@ -109,7 +143,7 @@ static id instance = nil;
             obj = obj.mutableCopy;
             
             NSInteger code = [obj[@"code"] integerValue];
-            if (!code) {
+            if (!code ) {
                 NSLog(@"获取数据成功");
                 
                 NSMutableString *dataString = [obj valueForKey:@"data"];

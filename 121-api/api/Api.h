@@ -10,6 +10,8 @@
 
 @interface Api : NSObject
 
+#define online YES
+
 + (instancetype)shareApi;
 + (void)registerAppKey:(NSString *)appKey;
 
